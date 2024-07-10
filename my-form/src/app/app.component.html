@@ -18,7 +18,7 @@
         </div>
 
         <label for="password">Password</label><br>
-        <input type="text" formControlName="password"><br>
+        <input type="password" formControlName="password"><br>
         <div *ngIf="myform.controls['password'].invalid && myform.controls['password'].touched" class="error">
           <div *ngIf="myform.controls['password'].errors?.['required']">Password is required.</div>
           <div *ngIf="myform.controls['password'].errors?.['minlength']">Password must be at least 5 characters long.</div>
@@ -29,9 +29,11 @@
       </form>
     </div>
   </div>
-  <div class="infoDiv">
+  <div class="infoDiv" *ngIf="users.length > 0">
     <h2>Info Saved</h2>
-    <p>{{myid  | json}}</p>
+    <ul>
+      <li *ngFor="let user of users">{{ user.username }} {{ user.gmail }}</li> 
+    </ul>
   </div>
 <router-outlet></router-outlet>
 </body>

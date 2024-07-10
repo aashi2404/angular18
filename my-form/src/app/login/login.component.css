@@ -39,14 +39,6 @@ body {
     border: 1px solid #ccc;
     float: left;
   }
-
-  input[type="password"] {
-    width: 96%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    float: left;
-  }
   
   button[type="submit"], button[type="button"] {
     width: 48%;
