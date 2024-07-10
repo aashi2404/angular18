@@ -6,18 +6,22 @@
         <label for="username">Username</label><br>
         <input type="text" formControlName="username"><br>
         <div *ngIf="myform.controls['username'].invalid && myform.controls['username'].touched" class="error">
-          Username must be at least 4 characters long.
+          <div *ngIf="myform.controls['username'].errors?.['required']">Username is required.</div>
+          <div *ngIf="myform.controls['username'].errors?.['minlength']">Username must be at least 4 characters long.</div>
         </div>
+
         <label for="gmail">Gmail</label><br>
         <input type="text" formControlName="gmail"><br>
         <div *ngIf="myform.controls['gmail'].invalid && myform.controls['gmail'].touched" class="error">
-          Gmail must be in proper format.
+          <div *ngIf="myform.controls['gmail'].errors?.['required']">Gmail is required.</div>
+          <div *ngIf="myform.controls['gmail'].errors?.['pattern']">Gmail must be in proper format.</div>
         </div>
 
         <label for="password">Password</label><br>
         <input type="text" formControlName="password"><br>
         <div *ngIf="myform.controls['password'].invalid && myform.controls['password'].touched" class="error">
-          Password must be at least 5 characters long.
+          <div *ngIf="myform.controls['password'].errors?.['required']">Password is required.</div>
+          <div *ngIf="myform.controls['password'].errors?.['minlength']">Password must be at least 5 characters long.</div>
         </div>
 
         <button type="submit">SAVE</button>

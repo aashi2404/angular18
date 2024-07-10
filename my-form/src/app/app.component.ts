@@ -29,6 +29,8 @@ export class AppComponent implements OnInit{
     if (this.myform.valid) {
       localStorage.setItem('formdata', JSON.stringify(this.myform.value));
       this.display();
+    } else {
+      this.myform.markAllAsTouched(); 
     }
   }
 
