@@ -25,4 +25,9 @@ export class AppComponent {
     localStorage.setItem("formdata",JSON.stringify(this.myform.value));
     this.display();
   }
+
+  onReset() {
+    this.myform.reset();
+    this.myid = '';
+  }
 }

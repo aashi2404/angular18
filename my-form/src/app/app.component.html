@@ -5,11 +5,16 @@
       <form [formGroup]="myform" (ngSubmit)="onSubmit()">
         <label for="username">Username</label><br>
         <input type="text" formControlName="username"><br>
+        <label for="gmail">Gmail</label><br>
+        <input type="text" formControlName="gmail"><br>
         <label for="password">Password</label><br>
         <input type="text" formControlName="password"><br>
         <button type="submit">SAVE</button>
+        <button type="button" (click)="onReset()">RESET</button>
       </form>
     </div>
+  </div>
+  <div class="infoDiv">
     <h2>Info Saved</h2>
     <p>{{myid}}</p>
   </div>
