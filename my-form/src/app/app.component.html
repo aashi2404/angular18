@@ -5,10 +5,21 @@
       <form [formGroup]="myform" (ngSubmit)="onSubmit()">
         <label for="username">Username</label><br>
         <input type="text" formControlName="username"><br>
+        <div *ngIf="myform.controls['username'].invalid && myform.controls['username'].touched" class="error">
+          Username must be at least 4 characters long.
+        </div>
         <label for="gmail">Gmail</label><br>
         <input type="text" formControlName="gmail"><br>
+        <div *ngIf="myform.controls['gmail'].invalid && myform.controls['gmail'].touched" class="error">
+          Gmail must be in proper format.
+        </div>
+
         <label for="password">Password</label><br>
         <input type="text" formControlName="password"><br>
+        <div *ngIf="myform.controls['password'].invalid && myform.controls['password'].touched" class="error">
+          Password must be at least 5 characters long.
+        </div>
+
         <button type="submit">SAVE</button>
         <button type="button" (click)="onReset()">RESET</button>
       </form>
@@ -16,7 +27,7 @@
   </div>
   <div class="infoDiv">
     <h2>Info Saved</h2>
-    <p>{{myid}}</p>
+    <p>{{myid  | json}}</p>
   </div>
 <router-outlet></router-outlet>
 </body>
