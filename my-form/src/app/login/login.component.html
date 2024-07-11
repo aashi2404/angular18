@@ -28,9 +28,12 @@
       </form>
     </div>
   </div>
-  <div class="infoDiv">
-    <h2>Info Saved</h2>
-    <ul>
-      <li *ngFor="let user of users">{{ user.username }} {{ user.gmail }}</li>
-    </ul>
+  <div class="App">
+    <h1>Hello Users!</h1>
+    <div class="user-container">
+      <div *ngFor="let user of users" class="user-card">
+        <p><strong>{{ user.first_name }}</strong></p>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
   </div>
