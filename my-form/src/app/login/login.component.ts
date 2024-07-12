@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
       this.myform= new FormGroup({
         username : new FormControl('', [Validators.required, Validators.minLength(4)]),
-        gmail : new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]),
+        gmail : new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@reqres\.in$/)]),
         password: new FormControl('', [Validators.required, Validators.minLength(5)])
       });
 
@@ -33,29 +33,43 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.myform.valid) {
     const data = {
-             email: this.myform.value.gmail,
-             password: this.myform.value.password
+        //      email: 'eve.holt@reqres.in',  // Using known credentials
+        // password: 'cityslicka'
+        email: this.myform.value.gmail,
+        password: this.myform.value.password
          };
+         console.log('email', data.email);
+        //  console.log('user', data.user);
+         console.log('password', data.password);
+
 
     this.http.post('https://reqres.in/api/login', data).subscribe({
       next: (response: any) => {
         console.log('Login successful:', response);
         if (response && response.token) {
           localStorage.setItem('mytoken', response.token);
+          this.getUserList();
         }
       },
       error: (error: any) => {
         console.error('Error:', error);
       }
     });
+    console.log('Form is valid');
+  }
+    else {
+      this.myform.markAllAsTouched();
+      console.log('Form is invalid');
+    }
   }
 
   getUserList() {
     this.http.get('https://reqres.in/api/users?page=2').subscribe({
       next: (response: any) => {
         console.log('Users fetched:', response);
+        this.users = response.data;
       },
       error: (error) => {
         console.log('Get users error:', error);

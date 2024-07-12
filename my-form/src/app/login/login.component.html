@@ -32,8 +32,17 @@
     <h1>Hello Users!</h1>
     <div class="user-container">
       <div *ngFor="let user of users" class="user-card">
-        <p><strong>{{ user.first_name }}</strong></p>
+        <img src="https://reqres.in/img/faces/1-image.jpg">
+        <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
         <p>{{ user.email }}</p>
       </div>
     </div>
   </div>
+  <!-- <p>Use ngNonBindable to stop evaluation.</p>
+  <p ngNonBindable>This should not evaluate: {{ 1 + 1 }}</p>
+  
+  <h3>ngNonBindable with a directive</h3>
+  <div ngNonBindable style="background-color: yellow; padding: 10px;">
+    This should not evaluate: {{ 1 + 1 }}, but will highlight yellow.
+  </div> -->
+
