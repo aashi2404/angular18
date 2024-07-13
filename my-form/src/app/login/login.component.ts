@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   myform: any;
   users: any[] = [];
   errorMessage: string = '';
+  showUserList: boolean = false;
+  color = '#F8C8DC';
 
   ngOnInit() {
 
@@ -24,8 +26,6 @@ export class LoginComponent implements OnInit {
         gmail : new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@reqres\.in$/)]),
         password: new FormControl('', [Validators.required, Validators.minLength(5)])
       });
-
-    this.getUserList();
   }
 
   display() {
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.myform.valid) {
     const data = {
-        //      email: 'eve.holt@reqres.in',  // Using known credentials
+        //      email: 'eve.holt@reqres.in', 
         // password: 'cityslicka'
         email: this.myform.value.gmail,
         password: this.myform.value.password
@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Error:', error);
+        this.showUserList = false;
       }
     });
     console.log('Form is valid');
@@ -70,9 +71,11 @@ export class LoginComponent implements OnInit {
       next: (response: any) => {
         console.log('Users fetched:', response);
         this.users = response.data;
+        this.showUserList = this.users.length > 0;;
       },
       error: (error) => {
         console.log('Get users error:', error);
+        this.showUserList = false;
       }
     });
   }
@@ -83,6 +86,7 @@ export class LoginComponent implements OnInit {
     this.myid = null;
     this.users = [];
     this.errorMessage = '';
+    this.showUserList = false;
   }
 
 }

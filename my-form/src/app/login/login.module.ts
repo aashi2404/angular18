@@ -5,13 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login.component';
+import { HighlightDirective } from '../highlight.directive'; 
 
 const routes: Routes = [
   { path: '', component: LoginComponent }
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+    HighlightDirective 
+  ],
   imports: [
     CommonModule,
     FormsModule,

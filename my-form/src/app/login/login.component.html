@@ -3,21 +3,25 @@
     <div>
       <form [formGroup]="myform" (ngSubmit)="onSubmit()">
         <label for="username">Username</label><br>
-        <input type="text" id="username" formControlName="username" autocomplete="username"><br>
+        <input type="text" id="username" formControlName="username" autocomplete="username"
+        [appHighlight]="myform.controls['username'].invalid && myform.controls['username'].touched ? 'red' : color">
+        <br>
         <div *ngIf="myform.controls['username'].invalid && myform.controls['username'].touched" class="error">
           <div *ngIf="myform.controls['username'].errors?.['required']">Username is required.</div>
           <div *ngIf="myform.controls['username'].errors?.['minlength']">Username must be at least 4 characters long.</div>
         </div>
 
         <label for="gmail">Gmail</label><br>
-        <input type="text" id="gmail" formControlName="gmail" autocomplete="email"><br>
+        <input type="text" id="gmail" formControlName="gmail" autocomplete="email"
+        [appHighlight]="myform.controls['gmail'].invalid && myform.controls['gmail'].touched ? 'red' : color"><br>
         <div *ngIf="myform.controls['gmail'].invalid && myform.controls['gmail'].touched" class="error">
           <div *ngIf="myform.controls['gmail'].errors?.['required']">Gmail is required.</div>
           <div *ngIf="myform.controls['gmail'].errors?.['pattern']">Gmail must be in proper format.</div>
         </div>
 
         <label for="password">Password</label><br>
-        <input type="password" id="password" formControlName="password" autocomplete="current-password"><br>
+        <input type="password" id="password" formControlName="password" autocomplete="current-password"
+        [appHighlight]="myform.controls['password'].invalid && myform.controls['password'].touched ? 'red' : color"><br>
         <div *ngIf="myform.controls['password'].invalid && myform.controls['password'].touched" class="error">
           <div *ngIf="myform.controls['password'].errors?.['required']">Password is required.</div>
           <div *ngIf="myform.controls['password'].errors?.['minlength']">Password must be at least 5 characters long.</div>
@@ -28,11 +32,11 @@
       </form>
     </div>
   </div>
-  <div class="App">
+  <div class="App" *ngIf="showUserList">
     <h1>Hello Users!</h1>
     <div class="user-container">
       <div *ngFor="let user of users" class="user-card">
-        <img src="https://reqres.in/img/faces/1-image.jpg">
+        <img [src]="user.avatar">
         <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
         <p>{{ user.email }}</p>
       </div>
