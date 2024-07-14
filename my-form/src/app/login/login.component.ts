@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public http : HttpClient) { }
-
   title = 'my-form';
   myid: any;
   myform: any;
@@ -18,6 +17,8 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
   showUserList: boolean = false;
   color = '#F8C8DC';
+
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -87,6 +88,18 @@ export class LoginComponent implements OnInit {
     this.users = [];
     this.errorMessage = '';
     this.showUserList = false;
+  }
+
+  validateUser() {
+    const email = this.myform.value.gmail;
+    const password = this.myform.value.password;
+    if (this.authService.validateUser(email, password)) {
+      console.log('User is valid');
+      alert('User is valid');
+    } else {
+      console.log('User is not valid');
+      alert('User is not valid');
+    }
   }
 
 }
