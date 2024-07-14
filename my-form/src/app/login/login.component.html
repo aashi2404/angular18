@@ -34,7 +34,7 @@
   </div>
 </div>
 <div class="App" *ngIf="showUserList">
-  <h1>Hello Users!</h1>
+  <h1 (click)="changeState()" [@changeTextSize]="currentState">Hello Users!</h1>
   <div class="user-container">
     <div *ngFor="let user of users" class="user-card">
       <img [src]="user.avatar">
